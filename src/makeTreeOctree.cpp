@@ -141,11 +141,6 @@ bool constructTree(const char *file){
     inputFile[i] = '\0';
 
   /*
-      scale box
-  */
-  float boxScale = sur.fitIntoBox(1000);
-
-  /*
       make sphere-tree
   */
   SphereTree tree;
@@ -161,7 +156,7 @@ bool constructTree(const char *file){
   */
   char sphereFile[1024];
   sprintf(sphereFile, "%s-octree.sph", inputFile);
-  if (tree.saveSphereTree(sphereFile, 1.0f/boxScale)){
+  if (tree.saveSphereTree(sphereFile)){
     FILE *f = fopen(sphereFile, "a");
     if (f){
       fprintf(f, "Options : \n");
