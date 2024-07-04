@@ -330,7 +330,14 @@ build folder under either debug or release.
 
 UNIX
 ----
-To compile the programs in a UNIX-like environment simply go into the directory
-where you extracted the archive, run the configure script using "./configure" and
-then build the programs using the command "make".  The command line programs will
-be built in the "src" directory.
+To compile the programs in a UNIX-like environment run the following commands:
+
+```
+cd spheretree
+./configure
+make all AUTOCONF=: AUTOHEADER=: AUTOMAKE=: ACLOCAL=:
+```
+
+> Note: run make without `autotools` support which seems to cause the builds to fail
+
+The command line programs will be built in the "src" directory.
