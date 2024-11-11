@@ -1,0 +1,16 @@
+services:
+  spheretree:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      SPH_BRANCH: 8
+      SPH_DEPTH: 3
+      SPH_OBJ_FILE: /tmp/mesh.obj  # Path to mesh file; remember to mount the directory that includes the mesh
+    container_name: spheretree
+    image: spheretree:jammy
+    stdin_open: true
+    tty: true
+    user: ${CURRENT_UID}  # export CURRENT_UID=$(id -u):$(id -g)
+    volumes:
+      - /tmp:/tmp  # Mount the directory that includes the mesh to be converted
