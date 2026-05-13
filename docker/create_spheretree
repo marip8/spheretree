@@ -1,0 +1,21 @@
+#!/bin/bash
+set -euo pipefail
+
+create_spheretree() {
+	local sph_obj_file="$1"
+	local sph_depth="${2:-3}"
+	local sph_branch="${3:-8}"
+
+	if [[ -z "$sph_obj_file" ]]; then
+		echo "Usage: create_spheretree <obj_file> [branch=8] [depth=3]" >&2
+		return 1
+	fi
+
+	/opt/makeTreeSpawn -branch "$sph_branch" -depth "$sph_depth" -testerLevels 2 -numCover 10000 -minCover 5 -nopause "$sph_obj_file"
+}
+
+if [[ $# -gt 0 ]]; then
+	create_spheretree "$@"
+else
+	create_spheretree "${SPH_OBJ_FILE:-}" "${SPH_DEPTH:-3}" "${SPH_BRANCH:-8}"
+fi

@@ -17,5 +17,6 @@ RUN --mount=type=bind,target=${SPHERETREE_DIR},readwrite \
   && cp src/makeTree* /opt
 
 # Add the entrypoint
-COPY docker/entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY docker/create_spheretree /usr/local/bin/create_spheretree
+RUN chmod +x /usr/local/bin/create_spheretree
+ENTRYPOINT ["/usr/local/bin/create_spheretree"]
